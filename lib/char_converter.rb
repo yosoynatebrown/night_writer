@@ -8,7 +8,7 @@ class CharConverter
 
   def braille_hash
     punctuation_hash = {
-      " " => "",
+      " " => "..\n..\n..",
       "!" => "",
       "''" => "",
       "," => "",
@@ -18,21 +18,21 @@ class CharConverter
     }
 
     lower_case_hash = {
-      "a" => "",
-      "b" => "",
+      "a" => "0.\n..\n..",
+      "b" => "0.\n0.\n..",
       "c" => "",
       "d" => "",
-      "e" => "",
+      "e" => "0.\n.0\n..",
       "f" => "",
       "g" => "",
-      "h" => "",
+      "h" => "0.\n00\n..",
       "i" => "",
       "j" => "",
       "k" => "",
-      "l" => "",
+      "l" => "0.\n0.\n0.",
       "m" => "",
       "n" => "",
-      "o" => "",
+      "o" => "0.\n.0\n0.",
       "p" => "",
       "q" => "",
       "r" => "",
@@ -51,7 +51,7 @@ class CharConverter
   lower_case_hash.each do |char, string|
     upcase_hash[char.upcase] = "..\n..\n.0\n" + string
   end
-  
+
   punctuation_hash.merge(lower_case_hash.merge(upcase_hash))
   end
 
