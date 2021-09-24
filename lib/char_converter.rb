@@ -1,8 +1,7 @@
 class CharConverter
-
-  def initialize(english_char)
-    @english_char = english_char
-    @braille_char = ""
+  attr_reader :braille
+  def initialize(string)
+    @braille = convert_to_braille(string)
   end
 
   def punctuation_hash
