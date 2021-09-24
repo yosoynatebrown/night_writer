@@ -83,7 +83,6 @@ class CharConverter
         num = num + 1
         full_string += line1[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line2[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line3[(80 * num)..((80 * (num + 1)) - 1)]  + "\n"
       end
-      require "pry"; binding.pry
       full_string.gsub("\\n", "\n")
     end
   end
