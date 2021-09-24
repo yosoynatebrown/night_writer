@@ -8,7 +8,7 @@ class CharConverter
     {
      " "=>["..", "..", ".."],
      "!"=>["..", "00", "0."],
-    "''"=>["..", "..", "0."],
+     "'"=>["..", "..", "0."],
      ","=>["..", "0.", ".."],
      "-"=>["..", "..", "00"],
      "."=>["..", "00", ".0"],
@@ -75,19 +75,16 @@ class CharConverter
       line2 += "\n"
       full_string = line1 + line2 + line3
     else
-      line1 += "\n"
-      line2 += "\n"
-      line3 += "\n"
-      first_line = line1[0..81] + line2[0..81] + line3[0..81]
-      full_string = ""
-
+      first_line = line1[0..79] + '\n' + line2[0..79] + '\n' + line3[0..79] + '\n'
+      full_string = first_line
       number_of_wraps = (line1.length / 80)
 
       number_of_wraps.times do |num|
-        full_string += line1[(79 * num)..(79 * (num + 1))] + "\n" + line2[(79 * num)..(79 * (num + 1))] + "\n" + line3[(79 * num)..(79 * (num + 1))]  + "\n"
+        num = num + 1
+        full_string += line1[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line2[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line3[(80 * num)..((80 * (num + 1)) - 1)]  + "\n"
       end
-
-      full_string
+      require "pry"; binding.pry
+      full_string.gsub("\\n", "\n")
     end
   end
 
