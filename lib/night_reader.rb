@@ -5,7 +5,7 @@ class NightReader
   end
 
   def read_text
-    lines = File.readlines(@path)
-    lines[0].chomp
+    lines = File.read(@path)
+    lines.gsub("\n", "")
   end
 end

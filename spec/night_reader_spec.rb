@@ -11,6 +11,6 @@ describe NightReader do
   end
 
   it '#read_text' do
-    expect(@reader.read_text).to eq('hello world')
+    expect(@reader.read_text).to eq('hello worldhello world')
   end
 end
