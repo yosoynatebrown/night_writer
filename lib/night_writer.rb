@@ -1,9 +1,14 @@
+require_relative 'night_reader'
+require_relative 'file_writer'
+
 path_array = ARGV
 
 
-NightReader.new(path_array[0])
+reader = NightReader.new(path_array[0])
+text = reader.read_text
 
-FileWriter.new(path_array[1])
+writer = FileWriter.new(path_array[1], text)
+writer.write_to_file
 
 lines = File.readlines(path_array[1])
 text = lines.join
