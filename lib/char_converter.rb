@@ -1,7 +1,7 @@
 class CharConverter
-  attr_reader :braille
+  attr_reader :converted
   def initialize(string)
-    @braille = convert_to_braille(string)
+    @converted = convert_to_braille(string)
   end
 
   def punctuation_hash
@@ -18,7 +18,7 @@ class CharConverter
 
   def lower_case_hash
     {
-      "a"=>["0.", "..", ".."],
+     "a"=>["0.", "..", ".."],
      "b"=>["0.", "0.", ".."],
      "c"=>["00", "..", ".."],
      "d"=>["00", ".0", ".."],

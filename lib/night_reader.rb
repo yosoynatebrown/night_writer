@@ -4,8 +4,12 @@ class NightReader
     @path = path
   end
 
-  def read_text
+  def read_chars
     lines = File.read(@path)
     lines.gsub("\n", "")
+  end
+
+  def read_braille
+    lines = File.read(@path)
   end
 end
