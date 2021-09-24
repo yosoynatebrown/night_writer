@@ -28,4 +28,10 @@ describe CharConverter do
   it "braille hash the right number of characters total" do
     expect(@converter.braille_hash.count).to eq(59)
   end
+
+  it "#convert_to_braille" do
+    expected = "0.\n00\n..0.\n.0\n..0.\n0.\n0.0.\n0.\n0.0.\n.0\n0...\n..\n...0\n00\n.00.\n.0\n0.0.\n00\n0.0.\n0.\n0.00\n.0\n.."
+
+expect(@converter.convert_to_braille("hello world")).to eq(expected)
+  end
 end

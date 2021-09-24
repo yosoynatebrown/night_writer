@@ -58,4 +58,12 @@ class CharConverter
   punctuation_hash.merge(lower_case_hash.merge(upcase_hash))
   end
 
+  def convert_to_braille(string)
+    braille_string = ""
+    string.each_char do |char|
+      braille_string += braille_hash[char]
+    end
+    braille_string
+  end
+
 end
