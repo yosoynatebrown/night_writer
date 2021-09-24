@@ -59,11 +59,21 @@ class CharConverter
   end
 
   def convert_to_braille(string)
-    braille_string = ""
-    string.each_char do |char|
-      braille_string += braille_hash[char]
+    values_array = string.chars.map do |char|
+      braille_hash[char]
     end
-    braille_string
+    line1 = ""
+    line2 = ""
+    line3 = ""
+    values_array.each do |array|
+      line1 += array[0]
+      line2 += array[1]
+      line3 += array[2]
+    end
+    line1 += "\n"
+    line2 += "\n"
+
+    line1 + line2 + line3
   end
 
 end

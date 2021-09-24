@@ -22,7 +22,6 @@ describe CharConverter do
   end
 
   it "has a braille hash" do
-    require "pry"; binding.pry
     expect(@converter.braille_hash).to be_a(Hash)
   end
 
@@ -30,8 +29,8 @@ describe CharConverter do
     expect(@converter.braille_hash.count).to eq(59)
   end
 
-  xit "#convert_to_braille" do
-    expected = ""
+  it "#convert_to_braille" do
+    expected = "0.0.0.0.0....00.0.0.00\n00.00.0..0..00.0000..0\n....0.0.0....00.0.0..."
 
     expect(@converter.convert_to_braille("hello world")).to eq(expected)
   end
