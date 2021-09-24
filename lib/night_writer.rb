@@ -3,6 +3,7 @@ path_array = ARGV
 
 NightReader.new(path_array[0])
 
+FileWriter.new(path_array[1])
 
 lines = File.readlines(path_array[1])
 text = lines.join
