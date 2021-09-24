@@ -69,10 +69,26 @@ class CharConverter
       line2 += array[1]
       line3 += array[2]
     end
-    line1 += "\n"
-    line2 += "\n"
 
-    line1 + line2 + line3
+    if line1.length < 81
+      line1 += "\n"
+      line2 += "\n"
+      full_string = line1 + line2 + line3
+    else
+      line1 += "\n"
+      line2 += "\n"
+      line3 += "\n"
+      first_line = line1[0..81] + line2[0..81] + line3[0..81]
+      full_string = ""
+
+      number_of_wraps = (line1.length / 80)
+
+      number_of_wraps.times do |num|
+        full_string += line1[(79 * num)..(79 * (num + 1))] + "\n" + line2[(79 * num)..(79 * (num + 1))] + "\n" + line3[(79 * num)..(79 * (num + 1))]  + "\n"
+      end
+
+      full_string
+    end
   end
 
 end
