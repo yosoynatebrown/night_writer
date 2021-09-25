@@ -8,6 +8,7 @@ path_array = ARGV
 
 reader = NightReader.new(path_array[0])
 text = reader.read_chars
+
 if text.count('.0') == text.size
   converter = BrailleConverter.new(text)
 else
