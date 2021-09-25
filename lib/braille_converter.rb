@@ -26,6 +26,7 @@ include CharLookupable
         final_string << char_hash[letter]
       end
     end
-    final_string
+    final_string.gsub!(/;([a-z])/, &:upcase)
+    final_string.gsub(";", "")
   end
 end
