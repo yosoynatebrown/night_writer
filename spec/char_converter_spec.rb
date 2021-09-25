@@ -26,7 +26,7 @@ describe CharConverter do
   end
 
   it "braille hash the right number of characters total" do
-    expect(@converter.braille_hash.count).to eq(59)
+    expect(@converter.braille_hash.count).to eq(60)
   end
 
   it "#convert_to_braille" do
