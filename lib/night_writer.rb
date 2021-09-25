@@ -1,16 +1,21 @@
 require_relative 'night_reader'
 require_relative 'file_writer'
 require_relative 'char_converter'
+require_relative 'braille_converter'
 
 path_array = ARGV
 
 
 reader = NightReader.new(path_array[0])
-text = reader.read_text
+text = reader.read_chars
 
-converter = CharConverter.new(text)
+if text.count('.0') == text.size
+  converter = BrailleConverter.new(text)
+else
+  converter = CharConverter.new(text)
+end
 
-writer = FileWriter.new(path_array[1], converter.braille)
+writer = FileWriter.new(path_array[1], converter.converted)
 writer.write_to_file
 
 lines = File.readlines(path_array[1])
