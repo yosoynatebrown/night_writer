@@ -10,7 +10,8 @@ reader = NightReader.new(path_array[0])
 text = reader.read_chars
 
 if text.count('.0') == text.size
-  converter = BrailleConverter.new(text)
+  line_array = reader.read_braille
+  converter = BrailleConverter.new(line_array)
 else
   converter = CharConverter.new(text)
 end
