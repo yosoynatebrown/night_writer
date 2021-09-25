@@ -10,6 +10,9 @@ class NightReader
   end
 
   def read_braille
-    lines = File.read(@path)
+    lines = File.readlines(@path)
+    lines.each do |line|
+      line.gsub!("\n", "")
+    end
   end
 end

@@ -1,4 +1,4 @@
-require "braille_lookupable.rb"
+require_relative "braille_lookupable.rb"
 
 class CharConverter
   include BrailleLookupable

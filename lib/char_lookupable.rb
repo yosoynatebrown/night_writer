@@ -1,5 +1,3 @@
-require 'char_converter'
-
 module CharLookupable
 
   def punctuation_hash
