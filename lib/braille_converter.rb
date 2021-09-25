@@ -20,6 +20,13 @@ include CharLookupable
     arrays_by_rows.each do |array|
       transposed_array << array.transpose
     end
-    require "pry"; binding.pry
+    final_string = ""
+    transposed_array.each do |row|
+      row.each do |letter|
+        final_string << char_hash[letter]
+      end
+      final_string += "\n"
+    end
+    final_string
   end
 end
