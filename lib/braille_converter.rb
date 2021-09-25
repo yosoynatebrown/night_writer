@@ -25,7 +25,6 @@ include CharLookupable
       row.each do |letter|
         final_string << char_hash[letter]
       end
-      final_string += "\n"
     end
     final_string
   end
