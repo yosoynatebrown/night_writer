@@ -50,9 +50,15 @@ describe CharConverter do
     expect(@converter.format_to_lines[:line1].length).to eq(22)
   end
 
+  it "#format_to_lines" do
+    @converter = CharConverter.new(" !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    expect(@converter.wrapping(@converter.format_to_lines)).to be_a(String)
+    expect(@converter.wrapping(@converter.format_to_lines).length).to eq(522)
+  end
+
   it "#convert_to_braille" do
     expected = "0.0.0.0.0....00.0.0.00\n00.00.0..0..00.0000..0\n....0.0.0....00.0.0..."
 
-    expect(@converter.convert_to_braille("hello world")).to eq(expected)
+    expect(@converter.convert_to_braille).to eq(expected)
   end
 end

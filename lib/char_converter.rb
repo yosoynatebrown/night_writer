@@ -5,7 +5,7 @@ class CharConverter
   attr_reader :converted
   def initialize(string)
     @string = string
-    @converted = convert_to_braille(string)
+    @converted = convert_to_braille
   end
 
   def lookup_chars
@@ -30,7 +30,21 @@ class CharConverter
     line_hash
   end
 
-  def convert_to_braille(string)
+  def wrapping(line_hash)
+    line1 = line_hash[:line1]
+    line2 = line_hash[:line2]
+    line3 = line_hash[:line3]
+    full_string = line1[0..79] + '\n' + line2[0..79] + '\n' + line3[0..79] + '\n'
+    number_of_wraps = (line1.length / 80)
+
+    number_of_wraps.times do |num|
+      num = num + 1
+      full_string += line1[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line2[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line3[(80 * num)..((80 * (num + 1)) - 1)]  + "\n"
+    end
+    full_string
+  end
+
+  def convert_to_braille
     line1 = format_to_lines[:line1]
     line2 = format_to_lines[:line2]
     line3 = format_to_lines[:line3]
@@ -39,16 +53,9 @@ class CharConverter
       line2 += "\n"
       full_string = line1 + line2 + line3
     else
-      first_line = line1[0..79] + '\n' + line2[0..79] + '\n' + line3[0..79] + '\n'
-      full_string = first_line
-      number_of_wraps = (line1.length / 80)
-
-      number_of_wraps.times do |num|
-        num = num + 1
-        full_string += line1[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line2[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line3[(80 * num)..((80 * (num + 1)) - 1)]  + "\n"
-      end
-      full_string.gsub("\\n", "\n")
+      full_string = wrapping(format_to_lines)
     end
+      full_string.gsub("\\n", "\n")
   end
 
 end
