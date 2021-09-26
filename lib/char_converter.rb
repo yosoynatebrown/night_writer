@@ -4,22 +4,36 @@ class CharConverter
   include BrailleLookupable
   attr_reader :converted
   def initialize(string)
+    @string = string
     @converted = convert_to_braille(string)
   end
 
-  def convert_to_braille(string)
-    values_array = string.chars.map do |char|
+  def lookup_chars
+    @string.chars.map do |char|
       braille_hash[char]
     end
+  end
+
+  def format_to_lines
     line1 = ""
     line2 = ""
     line3 = ""
-    values_array.each do |array|
+    lookup_chars.each do |array|
       line1 += array[0]
       line2 += array[1]
       line3 += array[2]
     end
+    line_hash = Hash.new
+    line_hash[:line1] = line1
+    line_hash[:line2] = line2
+    line_hash[:line3] = line3
+    line_hash
+  end
 
+  def convert_to_braille(string)
+    line1 = format_to_lines[:line1]
+    line2 = format_to_lines[:line2]
+    line3 = format_to_lines[:line3]
     if line1.length < 81
       line1 += "\n"
       line2 += "\n"

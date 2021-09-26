@@ -1,9 +1,10 @@
+require_relative 'spec_helper.rb'
 require "rspec"
 require "./lib/char_converter"
 
 describe CharConverter do
   before(:each) do
-  @converter = CharConverter.new("Z")
+  @converter = CharConverter.new("hello world")
   end
   it 'exists' do
   expect(@converter).to be_a(CharConverter)
@@ -26,7 +27,27 @@ describe CharConverter do
   end
 
   it "braille hash the right number of characters total" do
-    expect(@converter.braille_hash.count).to eq(60)
+    expect(@converter.braille_hash.count).to eq(69)
+  end
+
+  it "#lookup_chars" do
+    expected = [["0.", "00", ".."],
+                ["0.", ".0", ".."],
+                ["0.", "0.", "0."],
+                ["0.", "0.", "0."],
+                ["0.", ".0", "0."],
+                ["..", "..", ".."],
+                [".0", "00", ".0"],
+                ["0.", ".0", "0."],
+                ["0.", "00", "0."],
+                ["0.", "0.", "0."],
+                ["00", ".0", ".."]]
+    expect(@converter.lookup_chars).to eq(expected)
+  end
+
+  it "#format_to_lines" do
+    expect(@converter.format_to_lines).to be_a(Hash)
+    expect(@converter.format_to_lines[:line1].length).to eq(22)
   end
 
   it "#convert_to_braille" do
