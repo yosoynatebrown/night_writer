@@ -4,10 +4,16 @@ require "./lib/braille_converter"
 
 describe BrailleConverter do
   before(:each) do
-  line_array = ["0.0.0.0.0....00.0.0.000.0.0.0.0....00.0.0.00",
- "00.00.0..0..00.0000..000.00.0..0..00.0000..0",
- "....0.0.0....00.0.0.......0.0.0....00.0.0..."]
-  @braille_converter = BrailleConverter.new(line_array)
+  @line_array = ["..............0.0.00000.00000..0.00.0.00000.00000..0.00.0..000000...0...0...00..",
+"..00..0...000...0....0.00.00000.00..0....0.00.00000.00..0.00...0.0......0.......",
+"..0.0...00.000....................0.0.0.0.0.0.0.0.0.0.0000.0000000.0...0...0...0",
+"00..0...00..00..0....0...0..0...0...00..00..0...00..00..0....0...0..0...0....0..",
+".0...0..0...00..00..0...00......0........0...0..0...00..00..0...00......0...00..",
+"...0...0...0...0...0...0...00..00..00..00..00..00..00..00..00..00..000.000.0.0.0",
+"00..00..0.",
+".....0...0",
+"00.000.000"]
+  @braille_converter = BrailleConverter.new(@line_array)
   end
   it 'exists' do
   expect(@braille_converter).to be_a(BrailleConverter)
@@ -29,5 +35,15 @@ describe BrailleConverter do
     expect(@braille_converter.char_hash[["..", "..", "00"]]).to eq("-")
     expect(@braille_converter.char_hash[["00", "00", ".."]]).to eq("g")
     expect(@braille_converter.char_hash[["..0.", "..00", ".00."]]).to eq("R")
+  end
+
+  it '#convert_indicator_chars' do
+    input = " !',-.?abcdefghijklmnopqrstuvwxyz;a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z"
+    expected = " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    expect(@braille_converter.convert_indicator_chars(input)).to eq(expected)
+  end
+
+  it '#convert_to_chars' do
+   expect(@braille_converter.convert_to_chars(@line_array)).to eq(" !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
   end
 end
