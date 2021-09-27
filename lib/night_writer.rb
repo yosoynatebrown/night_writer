@@ -3,8 +3,6 @@ require_relative 'char_converter'
 require_relative 'braille_converter'
 
 path_array = ARGV
-
-
 reader = FileReader.new(path_array[0])
 text = reader.read_chars
 
