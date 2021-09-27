@@ -17,7 +17,6 @@ class FileReader
   end
 end
 
-
 class FileWriter
 
   def initialize(write_path, text_string)

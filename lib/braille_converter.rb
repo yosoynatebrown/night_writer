@@ -23,7 +23,7 @@ include CharLookupable
     string.gsub!(";", "")
     num_letters = ('a'..'j').to_a
     num_letters.each do |letter|
-    string.gsub!(/\##{letter}/, num_hash[letter])
+      string.gsub!(/\##{letter}/, num_hash[letter])
     end
     string
   end
