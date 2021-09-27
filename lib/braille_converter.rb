@@ -24,7 +24,11 @@ include CharLookupable
       end
     end
     final_string.gsub!(/;([a-z])/, &:upcase)
-    final_string.gsub(";", "")
-    # final_string.gsub(/\#[a-j]/, num_hash["\1"])
+    final_string.gsub!(";", "")
+    num_letters = ('a'..'j').to_a
+    num_letters.each do |letter|
+    final_string.gsub!(/\##{letter}/, num_hash[letter])
+    end
+    final_string
   end
 end
