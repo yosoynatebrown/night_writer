@@ -1,5 +1,4 @@
 require_relative 'char_lookupable'
-require "prettyprint"
 
 class BrailleConverter
 include CharLookupable
@@ -9,8 +8,6 @@ include CharLookupable
   end
 
   def convert_to_chars(line_array)
-    # braille_row_count = line_array.length / 3
-
     double_character_array = line_array.map do |line, array|
       line.chars.each_slice(2).map(&:join)
     end
@@ -27,6 +24,11 @@ include CharLookupable
       end
     end
     final_string.gsub!(/;([a-z])/, &:upcase)
-    final_string.gsub(";", "")
+    final_string.gsub!(";", "")
+    num_letters = ('a'..'j').to_a
+    num_letters.each do |letter|
+    final_string.gsub!(/\##{letter}/, num_hash[letter])
+    end
+    final_string
   end
 end

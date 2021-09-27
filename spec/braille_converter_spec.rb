@@ -1,9 +1,13 @@
+require_relative 'spec_helper.rb'
 require "rspec"
 require "./lib/braille_converter"
 
 describe BrailleConverter do
   before(:each) do
-  @braille_converter = BrailleConverter.new("")
+  line_array = ["0.0.0.0.0....00.0.0.000.0.0.0.0....00.0.0.00",
+ "00.00.0..0..00.0000..000.00.0..0..00.0000..0",
+ "....0.0.0....00.0.0.......0.0.0....00.0.0..."]
+  @braille_converter = BrailleConverter.new(line_array)
   end
   it 'exists' do
   expect(@braille_converter).to be_a(BrailleConverter)

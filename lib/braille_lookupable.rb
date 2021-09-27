@@ -43,6 +43,21 @@ module BrailleLookupable
    }
   end
 
+    def number_hash
+      {
+        "1"=>[".00.", ".0..", "00.."],
+        "2"=>[".00.", ".00.", "00.."],
+        "3"=>[".000", ".0..", "00.."],
+        "4"=>[".000", ".0.0", "00.."],
+        "5"=>[".00.", ".0.0", "00.."],
+        "6"=>[".000", ".00.", "00.."],
+        "7"=>[".000", ".000", "00.."],
+        "8"=>[".00.", ".000", "00.."],
+        "9"=>[".0.0", ".00.", "00.."],
+        "0"=>[".0.0", ".000", "00.."]
+      }
+    end
+
   def braille_hash
     upcase_hash = Hash.new([])
 
@@ -50,7 +65,7 @@ module BrailleLookupable
       upcase_hash[char.upcase] = ".." + array[0], ".." + array[1], ".0" + array[2]
     end
 
-    punctuation_hash.merge(lower_case_hash.merge(upcase_hash))
+    number_hash.merge(punctuation_hash.merge(lower_case_hash.merge(upcase_hash)))
   end
 
 end
