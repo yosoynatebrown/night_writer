@@ -25,5 +25,6 @@ include CharLookupable
     end
     final_string.gsub!(/;([a-z])/, &:upcase)
     final_string.gsub(";", "")
+    # final_string.gsub(/\#[a-j]/, num_hash["\1"])
   end
 end
