@@ -1,12 +1,11 @@
-require_relative 'night_reader'
-require_relative 'file_writer'
+require_relative 'file_io'
 require_relative 'char_converter'
 require_relative 'braille_converter'
 
 path_array = ARGV
 
 
-reader = NightReader.new(path_array[0])
+reader = FileReader.new(path_array[0])
 text = reader.read_chars
 
 if text.count('.0') == text.size
