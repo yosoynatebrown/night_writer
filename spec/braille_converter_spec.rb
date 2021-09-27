@@ -37,6 +37,11 @@ describe BrailleConverter do
     expect(@braille_converter.char_hash[["..0.", "..00", ".00."]]).to eq("R")
   end
 
+  it '#convert_lines_to_letters' do
+    expect(@braille_converter.convert_lines_to_letters.length).to eq(3)
+    expect(@braille_converter.convert_lines_to_letters[0][0]).to eq(["..", "..", ".."])
+  end
+
   it '#convert_indicator_chars' do
     input = " !',-.?abcdefghijklmnopqrstuvwxyz;a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z"
     expected = " !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -44,6 +49,6 @@ describe BrailleConverter do
   end
 
   it '#convert_to_chars' do
-   expect(@braille_converter.convert_to_chars(@line_array)).to eq(" !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+   expect(@braille_converter.convert_to_chars).to eq(" !',-.?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
   end
 end

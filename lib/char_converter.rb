@@ -15,19 +15,11 @@ class CharConverter
   end
 
   def format_to_lines
-    line1 = ""
-    line2 = ""
-    line3 = ""
-    lookup_chars.each do |array|
-      line1 += array[0]
-      line2 += array[1]
-      line3 += array[2]
+    lookup_chars.each_with_object(Hash.new("")) do |array, hash|
+      hash[:line1] += array[0]
+      hash[:line2] += array[1]
+      hash[:line3] += array[2]
     end
-    line_hash = Hash.new
-    line_hash[:line1] = line1
-    line_hash[:line2] = line2
-    line_hash[:line3] = line3
-    line_hash
   end
 
   def wrapping(line_hash)
@@ -36,7 +28,6 @@ class CharConverter
     line3 = line_hash[:line3]
     full_string = line1[0..79] + '\n' + line2[0..79] + '\n' + line3[0..79] + '\n'
     number_of_wraps = (line1.length / 80)
-
     number_of_wraps.times do |num|
       num = num + 1
       full_string += line1[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line2[(80 * num)..((80 * (num + 1)) - 1)] + "\n" + line3[(80 * num)..((80 * (num + 1)) - 1)]  + "\n"
